@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sasaima Birding & Ecotours — Where the Click Meets the Chirp</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">Sasaima Birding & Ecotours</h1>
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#trails">Trails</a>
+        <a href="#water">Waterfalls</a>
+        <a href="#wellness">Wellness</a>
+        <a href="#birds">Birds</a>
+        <a href="#map">Map</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-content container">
+        <div class="hero-text">
+          <h2>Where the <em>click</em> meets the <em>chirp</em></h2>
+          <p>Discover Sasaima, Cundinamarca — a soul-soothing corner of Colombia for birding, waterfalls, natural pools and mindful outdoor experiences.</p>
+          <a class="btn" href="#birds">Explore Birds</a>
+        </div>
+        <div class="hero-media">
+          <!-- Replace with a local image or short looping mp4 -->
+          <img src="sasaima landscape.jpg" alt="Sasaima landscape (replace me)" />
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAILS -->
+    <section id="trails" class="container section">
+      <h3>Ecological Trails</h3>
+      <p class="lead">Choose a route, enjoy mid-Andean forests, traditional villages and photographic stops.</p>
+
+      <div class="cards">
+        <article class="card">
+          <h4>Panche Trail</h4>
+          <p>Ancient route crossing mid-Andean forest with caves, waterfalls and cultural stories — ideal for curious hikers and photographers.</p>
+          <button class="more-btn" data-target="panche">Read more</button>
+        </article>
+
+        <article class="card">
+          <h4>Acuapal – Guayacundo</h4>
+          <p>A long route through villages, colonial stone paths and coffee farms — a real immersion into rural life.</p>
+          <button class="more-btn" data-target="acuapal">Read more</button>
+        </article>
+
+        <article class="card">
+          <h4>Jardín del Agua</h4>
+          <p>A small eco-park in Santa Teresa: guided hikes, river bathing, coffee tours and yoga sessions in nature.</p>
+          <button class="more-btn" data-target="jardin">Read more</button>
+        </article>
+      </div>
+
+      <div id="trail-details" class="detail-panel" hidden></div>
+    </section>
+
+    <!-- WATERFALLS -->
+    <section id="water" class="container section alt">
+      <h3>Waterfalls & Natural Pools</h3>
+      <p class="lead">Cool down in hidden waterfalls, follow tunnels and discover natural pools surrounded by cloud forest.</p>
+
+      <div class="gallery">
+        <figure class="thumb" data-title="La Chorrera" data-desc="Lush waterfall nestled in jungle vegetation; perfect for contemplation and a refreshing swim.">
+          <img src="chorrera.jpg" alt="La Chorrera (replace me)">
+          <figcaption>La Chorrera</figcaption>
+        </figure>
+        <figure class="thumb" data-title="La Poma" data-desc="Cloud forest trails and calm natural pools — ideal for birding and quiet afternoons.">
+          <img src="lapoma.jpg" alt="La Poma (replace me)">
+          <figcaption>La Poma Natural Park</figcaption>
+        </figure>
+      </div>
+
+      <div id="water-detail" class="detail-panel" hidden></div>
+    </section>
+
+    <!-- WELLNESS -->
+    <section id="wellness" class="container section">
+      <h3>Wellness Tourism</h3>
+      <p class="lead">Yoga at sunrise, guided meditation, mindful trekking and ancestral natural baths — spaces to disconnect and restore.</p>
+
+      <div class="grid-3">
+        <div class="info-card">
+          <h4>Outdoor Yoga</h4>
+          <p>Sunrise or sunset sessions with panoramic mountain views (example: Finca Albacerrada).</p>
+        </div>
+        <div class="info-card">
+          <h4>Natural Baths</h4>
+          <p>Ravines and wells along the Guane Trail are perfect for ancestral hydrotherapy and cooling off after hikes.</p>
+        </div>
+        <div class="info-card">
+          <h4>Local Therapies</h4>
+          <p>Workshops using coffee & cocoa oils, herbal infusions, and reflexology offered at small local farms.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIRDS -->
+    <section id="birds" class="container section alt">
+      <h3>Birds of Sasaima</h3>
+      <p class="lead">A small selection to spark curiosity — click each bird to reveal a short, inviting description and a quick tip for photographing or spotting it.</p>
+
+      <div class="bird-grid" id="bird-grid">
+        <!-- Each .bird-card is a clickable button that shows a small panel with a blurb -->
+        <button class="bird-card" data-bird="canario">
+          <img src="birds/canario.jpg" alt="Canario Coronado">
+          <span>Canario Coronado</span>
+        </button>
+
+        <button class="bird-card" data-bird="toche">
+          <img src="birds/toche.jpg" alt="Toche Pico de Plata">
+          <span>Toche Pico de Plata</span>
+        </button>
+
+        <button class="bird-card" data-bird="tangara">
+          <img src="birds/tangara.jpg" alt="Tángara Real">
+          <span>Tángara Real</span>
+        </button>
+
+        <button class="bird-card" data-bird="tortolita">
+          <img src="birds/tortolita.jpg" alt="Tortolita Rojiza">
+          <span>Tortolita Rojiza</span>
+        </button>
+
+        <button class="bird-card" data-bird="batara">
+          <img src="birds/batara.jpg" alt="Batará Carcajada">
+          <span>Batará Carcajada</span>
+        </button>
+
+        <button class="bird-card" data-bird="espatulita">
+          <img src="birds/espatulita.jpg" alt="Espatulita">
+          <span>Espatulita</span>
+        </button>
+
+        <button class="bird-card" data-bird="semillero">
+          <img src="birds/semillero.jpg" alt="Semillero Capuchino">
+          <span>Semillero Capuchino</span>
+        </button>
+
+        <button class="bird-card" data-bird="titiribi">
+          <img src="birds/titiribi.jpg" alt="Titiribí Pechirrojo">
+          <span>Titiribí Pechirrojo</span>
+        </button>
+
+        <button class="bird-card" data-bird="bichofue">
+          <img src="birds/bichofue.jpg" alt="Bichofué">
+          <span>Bichofué</span>
+        </button>
+
+        <button class="bird-card" data-bird="perico">
+          <img src="birds/perico.jpg" alt="Perico Alibronceado">
+          <span>Perico Alibronceado</span>
+        </button>
+      </div>
+
+      <div id="bird-panel" class="detail-panel large" hidden></div>
+    </section>
+
+    <!-- MAP -->
+    <section id="map" class="container section">
+      <h3>Where is Sasaima?</h3>
+      <p class="lead">Sasaima is located in Cundinamarca, Colombia. The map below highlights the town and sample trailheads.</p>
+
+      <div id="mapid" style="height: 420px; border-radius: 8px; overflow: hidden;"></div>
+      <p class="small-note">Map centered on coordinates: <strong>4.96705, -74.43512</strong>. Source: Open Geo data.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="container section alt">
+      <h3>Contact & Credits</h3>
+      <p>If you want to prepare a student tour, host a workshop or collaborate on photography projects, share your email and we will prepare a mini-proposal.</p>
+      <form id="contact-form" class="contact-form">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Tell us what you're interested in" rows="4"></textarea>
+        <button class="btn" type="submit">Send</button>
+      </form>
+      <p class="small-note">Content adapted from the project plan you provided.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Sasaima Birding & Ecotours — Student project presentation</p>
+    </div>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Main JS -->
+  <script src="script.js"></script>
+</body>
+</html>
