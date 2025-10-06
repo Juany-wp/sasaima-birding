@@ -38,16 +38,56 @@ document.querySelectorAll('.thumb').forEach(th=>{
 
 /* --------- Birds data (grid blurbs) --------- */
 const birds = {
-  canario: { name: "Canario Coronado", short: "A flash of yellow that greets dawn among coffee bushes.", tip: "Listen for short, cheerful notes near openings and farm edges — best at sunrise." },
-  toche: { name: "Toche Pico de Plata", short: "A sleek bird that shows a silver tone in bright light.", tip: "Try quiet observation near flowering trees at mid-morning." },
-  tangara: { name: "Tángara Real", short: "A colorful presence that adds jewel-like hues to the understorey.", tip: "Look for quick movements in mixed-species flocks after rain." },
-  tortolita: { name: "Tortolita Rojiza", short: "A gentle, rosy-toned dove often seen perched calmly on low branches.", tip: "Scan open grassy edges and watch for slow, steady movements." },
-  batara: { name: "Batará Carcajada", short: "A boisterous caller whose laugh-like notes punctuate the forest.", tip: "Follow clear, repeated calls early in the morning to locate them." },
-  espatulita: { name: "Espatulita", short: "An elegant silhouette with a distinctive tail shape.", tip: "Best spotted in shaded forest paths — keep your camera ready for subtle motion." },
-  semillero: { name: "Semillero Capuchino", short: "A tiny, active seed-eater that darts between shrubs.", tip: "Look low in thickets and along trail edges where seeds are abundant." },
-  titiribi: { name: "Titiribí Pechirrojo", short: "A small bird with a warm, reddish chest that stands out against green leaves.", tip: "Quiet patience near streams increases your chances at dawn or dusk." },
-  bichofue: { name: "Bichofué", short: "A curious forest bird often seen hopping on trunks and branches.", tip: "Check trunks and mid-height branches — they like vertical surfaces." },
-  perico: { name: "Perico Alibronceado", short: "A playful parrotlet with a subtle bronze sheen when it moves.", tip: "Watch small flocks around fruiting trees during late morning." }
+  canario: {
+    name: "Canario Coronado",
+    short: "Scientific name: Sicalis flaveola. Small finch with bright yellow plumage, common in open areas and coffee plantations.",
+    tip: "Prefers sunny spots near farms and rural roads."
+  },
+  toche: {
+    name: "Toche Pico de Plata",
+    short: "Scientific name: Ramphocelus dimidiatus. Medium-sized tanager recognized by its silver-gray bill and glossy plumage.",
+    tip: "Usually found in pairs in fruiting trees."
+  },
+  tangara: {
+    name: "Tángara Real",
+    short: "Scientific name: Tangara cyanicollis. One of the most colorful tanagers, featuring a blue body and yellow-green tones.",
+    tip: "Frequents humid forest canopies and mixed flocks."
+  },
+  tortolita: {
+    name: "Tortolita Rojiza",
+    short: "Scientific name: Columbina talpacoti. A small reddish dove, easily recognized by its gentle flight and soft cooing.",
+    tip: "Seen in open fields, town gardens, and rural roads."
+  },
+  batara: {
+    name: "Batará Carcajada",
+    short: "Scientific name: Thamnophilus multistriatus. A territorial antshrike producing loud, laughing calls from dense shrubs.",
+    tip: "Found in secondary forests and forest edges."
+  },
+  espatulita: {
+    name: "Espatulita",
+    short: "Scientific name: Lophornis adorabilis. Tiny hummingbird species with a distinctive spatulate tail and iridescent crest.",
+    tip: "Inhabits shaded understory and forest clearings."
+  },
+  semillero: {
+    name: "Semillero Capuchino",
+    short: "Scientific name: Sporophila nigricollis. Seed-eating bird with sexual dimorphism — males dark-headed, females brownish.",
+    tip: "Common in grasslands and agricultural areas."
+  },
+  titiribi: {
+    name: "Titiribí Pechirrojo",
+    short: "Scientific name: Pyrocephalus rubinus. Small flycatcher with a bright red chest and crown, very active and conspicuous.",
+    tip: "Prefers open fields and perches on fences or branches."
+  },
+  bichofue: {
+    name: "Bichofué",
+    short: "Scientific name: Pitangus sulphuratus. Large, vocal flycatcher with black mask and yellow belly — typical of Colombian towns.",
+    tip: "Perches on wires or trees, often near water sources."
+  },
+  perico: {
+    name: "Perico Alibronceado",
+    short: "Scientific name: Pyrrhura melanura. Small parakeet showing bronze-green wings and long tail; travels in noisy flocks.",
+    tip: "Seen in forest edges and fruiting trees."
+  }
 };
 
 const birdGrid = document.getElementById('bird-grid');
@@ -137,7 +177,7 @@ const birdsData = [
   { key: "toche", name: "Toche Pico de Plata", coords: [4.965, -74.438],
     desc: "Elegant and bright, it shines with silver tones when sunlight hits its feathers.",
     tip: "Look for it among flowering guayacanes mid-morning.",
-    images: ["toche2.jpeg", "toche3.jpg", "toche4.jpeg"] },
+    images: ["toche2.jpg", "toche3.jpg", "toche4.jpg"] },
   { key: "tangara", name: "Tángara Real", coords: [4.975, -74.433],
     desc: "Vivid colors dancing between branches — a true jewel of Sasaima.",
     tip: "Best spotted after rain when mixed flocks are active.",
