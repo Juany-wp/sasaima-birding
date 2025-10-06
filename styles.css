@@ -145,3 +145,8 @@ body{
   font-style: italic;
   margin-top: 8px;
 }
+
+/* Force the modal to stay hidden when the HTML attribute [hidden] is present */
+.bird-modal[hidden] {
+  display: none !important;
+}
