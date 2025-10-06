@@ -141,7 +141,7 @@ const birdsData = [
     coords: [4.970, -74.430],
     desc: "A flash of yellow that greets dawn among coffee bushes.",
     tip: "Listen for cheerful notes near coffee fields early morning.",
-    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+    images: ["canario2.jpg", "canario3.jpg", "canario4.jpg"]
   },
   {
     key: "toche",
@@ -149,7 +149,7 @@ const birdsData = [
     coords: [4.965, -74.438],
     desc: "Elegant and bright, it shines with silver tones when sunlight hits its feathers.",
     tip: "Look for it among flowering guayacanes mid-morning.",
-    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+    images: ["toche2.jpg", "toche3.jpg", "toche4.jpg"]
   },
   {
     key: "tangara",
