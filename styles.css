@@ -83,7 +83,8 @@ body{
   .hero-content{flex-direction:column}
   .nav{display:none}
 }
-/* Modal for Bird Info */
+
+/* Modal for Bird Info*/
 .bird-modal {
   position: fixed;
   top: 0;
@@ -91,16 +92,18 @@ body{
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  display: flex;
+  display: none; /* 👈 Oculto por defecto */
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  animation: fadeIn 0.3s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+/* Cuando el modal NO tiene el atributo hidden, se muestra con animación */
+.bird-modal:not([hidden]) {
+  display: flex;
+  opacity: 1;
 }
 
 .modal-content {
@@ -149,4 +152,5 @@ body{
 /* Force the modal to stay hidden when the HTML attribute [hidden] is present */
 .bird-modal[hidden] {
   display: none !important;
+  opacity: 0;
 }
