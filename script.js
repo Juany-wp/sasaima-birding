@@ -1,4 +1,4 @@
-/* --------- Trail details (from your plan) --------- */
+/* --------- Trail details --------- */
 const trailInfo = {
   panche: {
     title: "Panche Trail",
@@ -15,7 +15,7 @@ const trailInfo = {
 };
 
 document.querySelectorAll('.more-btn').forEach(btn=>{
-  btn.addEventListener('click', (e)=>{
+  btn.addEventListener('click', e=>{
     const key = e.currentTarget.getAttribute('data-target');
     const panel = document.getElementById('trail-details');
     panel.hidden = false;
@@ -36,64 +36,24 @@ document.querySelectorAll('.thumb').forEach(th=>{
   });
 });
 
-/* --------- Birds data (tourist-friendly blurbs) --------- */
+/* --------- Birds data (grid blurbs) --------- */
 const birds = {
-  canario: {
-    name: "Canario Coronado",
-    short: "A flash of yellow that greets dawn among coffee bushes.",
-    tip: "Listen for short, cheerful notes near openings and farm edges — best at sunrise."
-  },
-  toche: {
-    name: "Toche Pico de Plata",
-    short: "A sleek bird that shows a silver tone in bright light.",
-    tip: "Try quiet observation near flowering trees at mid-morning."
-  },
-  tangara: {
-    name: "Tángara Real",
-    short: "A colorful presence that adds jewel-like hues to the understorey.",
-    tip: "Look for quick movements in mixed-species flocks after rain."
-  },
-  tortolita: {
-    name: "Tortolita Rojiza",
-    short: "A gentle, rosy-toned dove often seen perched calmly on low branches.",
-    tip: "Scan open grassy edges and watch for slow, steady movements."
-  },
-  batara: {
-    name: "Batará Carcajada",
-    short: "A boisterous caller whose laugh-like notes punctuate the forest.",
-    tip: "Follow clear, repeated calls early in the morning to locate them."
-  },
-  espatulita: {
-    name: "Espatulita",
-    short: "An elegant silhouette with a distinctive tail shape.",
-    tip: "Best spotted in shaded forest paths — keep your camera ready for subtle motion."
-  },
-  semillero: {
-    name: "Semillero Capuchino",
-    short: "A tiny, active seed-eater that darts between shrubs.",
-    tip: "Look low in thickets and along trail edges where seeds are abundant."
-  },
-  titiribi: {
-    name: "Titiribí Pechirrojo",
-    short: "A small bird with a warm, reddish chest that stands out against green leaves.",
-    tip: "Quiet patience near streams increases your chances at dawn or dusk."
-  },
-  bichofue: {
-    name: "Bichofué",
-    short: "A curious forest bird often seen hopping on trunks and branches.",
-    tip: "Check trunks and mid-height branches — they like vertical surfaces."
-  },
-  perico: {
-    name: "Perico Alibronceado",
-    short: "A playful parrotlet with a subtle bronze sheen when it moves.",
-    tip: "Watch small flocks around fruiting trees during late morning."
-  }
+  canario: { name: "Canario Coronado", short: "A flash of yellow that greets dawn among coffee bushes.", tip: "Listen for short, cheerful notes near openings and farm edges — best at sunrise." },
+  toche: { name: "Toche Pico de Plata", short: "A sleek bird that shows a silver tone in bright light.", tip: "Try quiet observation near flowering trees at mid-morning." },
+  tangara: { name: "Tángara Real", short: "A colorful presence that adds jewel-like hues to the understorey.", tip: "Look for quick movements in mixed-species flocks after rain." },
+  tortolita: { name: "Tortolita Rojiza", short: "A gentle, rosy-toned dove often seen perched calmly on low branches.", tip: "Scan open grassy edges and watch for slow, steady movements." },
+  batara: { name: "Batará Carcajada", short: "A boisterous caller whose laugh-like notes punctuate the forest.", tip: "Follow clear, repeated calls early in the morning to locate them." },
+  espatulita: { name: "Espatulita", short: "An elegant silhouette with a distinctive tail shape.", tip: "Best spotted in shaded forest paths — keep your camera ready for subtle motion." },
+  semillero: { name: "Semillero Capuchino", short: "A tiny, active seed-eater that darts between shrubs.", tip: "Look low in thickets and along trail edges where seeds are abundant." },
+  titiribi: { name: "Titiribí Pechirrojo", short: "A small bird with a warm, reddish chest that stands out against green leaves.", tip: "Quiet patience near streams increases your chances at dawn or dusk." },
+  bichofue: { name: "Bichofué", short: "A curious forest bird often seen hopping on trunks and branches.", tip: "Check trunks and mid-height branches — they like vertical surfaces." },
+  perico: { name: "Perico Alibronceado", short: "A playful parrotlet with a subtle bronze sheen when it moves.", tip: "Watch small flocks around fruiting trees during late morning." }
 };
 
 const birdGrid = document.getElementById('bird-grid');
 const birdPanel = document.getElementById('bird-panel');
 
-birdGrid.addEventListener('click', (e)=>{
+birdGrid.addEventListener('click', e=>{
   const btn = e.target.closest('.bird-card');
   if (!btn) return;
   const key = btn.dataset.bird;
@@ -114,26 +74,61 @@ birdGrid.addEventListener('click', (e)=>{
   birdPanel.scrollIntoView({behavior:'smooth', block:'center'});
 });
 
-/* --------- Contact form basic handler (client side) --------- */
-document.getElementById('contact-form').addEventListener('submit', (e)=>{
+/* --------- Contact form basic handler --------- */
+document.getElementById('contact-form').addEventListener('submit', e=>{
   e.preventDefault();
   alert('Thanks! Your message was recorded (this is a demo form).');
   e.target.reset();
 });
 
-/* --------- Leaflet map (centered on Sasaima coordinates) --------- */
-/* Coordinates used: 4.96705, -74.43512 (Sasaima, Cundinamarca) */
+/* ===========================================================
+   🗺️ Map setup
+   =========================================================== */
 const map = L.map('mapid').setView([4.96705, -74.43512], 12);
-
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
 /* ===========================================================
-   🐦 Birds of Sasaima — Interactive Map + Modal + Carousel
+   📍 Custom Icons — Blue for places, Green for birds
    =========================================================== */
+const defaultIconUrl = "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png";
+const defaultIcon2xUrl = "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png";
+const shadowUrl = "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png";
 
-// Datos de aves (coordenadas aproximadas dentro de Sasaima)
+const placeIcon = L.icon({
+  iconUrl: defaultIconUrl,
+  iconRetinaUrl: defaultIcon2xUrl,
+  shadowUrl: shadowUrl,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+const birdIcon = L.icon({
+  iconUrl: defaultIconUrl,
+  iconRetinaUrl: defaultIcon2xUrl,
+  shadowUrl: shadowUrl,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+  className: "green-icon"
+});
+
+// add green tint for birds
+const style = document.createElement("style");
+style.innerHTML = `
+  .leaflet-marker-icon.green-icon {
+    filter: hue-rotate(110deg) saturate(1.4);
+  }
+`;
+document.head.appendChild(style);
+
+/* ===========================================================
+   🐦 Birds markers (with modal)
+   =========================================================== */
 const birdsData = [
   { key: "canario", name: "Canario Coronado", coords: [4.970, -74.430],
     desc: "A flash of yellow that greets dawn among coffee bushes.",
@@ -153,24 +148,30 @@ const birdsData = [
     images: ["tortolita2.jpeg", "tortolita3.jpeg", "tortolita4.jpg"] }
 ];
 
-// 🎯 Íconos personalizados (colores distintos)
-const birdIcons = {
-  canario: new L.Icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/616/616408.png', iconSize: [30, 30] }),
-  toche: new L.Icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/616/616554.png', iconSize: [30, 30] }),
-  tangara: new L.Icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/616/616408.png', iconSize: [30, 30] }),
-  tortolita: new L.Icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/616/616408.png', iconSize: [30, 30] })
-};
-
-// 🧭 Agregar pines al mapa
+// add bird markers
 birdsData.forEach(bird => {
-  const marker = L.marker(bird.coords, { icon: birdIcons[bird.key] || undefined }).addTo(map);
+  const marker = L.marker(bird.coords, { icon: birdIcon }).addTo(map);
   marker.on('click', () => openBirdModal(bird));
 });
 
-// Variable global para el carrusel
+/* ===========================================================
+   🏞️ Trailhead (place) markers
+   =========================================================== */
+const places = [
+  { name: "Panche Trailhead", coords: [4.9600, -74.4400] },
+  { name: "Jardín del Agua (Santa Teresa)", coords: [4.9750, -74.4300] },
+  { name: "La Poma Natural Park", coords: [4.9550, -74.4450] }
+];
+
+places.forEach(p => {
+  L.marker(p.coords, { icon: placeIcon }).addTo(map).bindPopup(p.name);
+});
+
+/* ===========================================================
+   🪶 Modal functions
+   =========================================================== */
 let swiper;
 
-// 🪶 Función para abrir modal
 function openBirdModal(bird) {
   const modal = document.getElementById('birdModal');
   const slidesContainer = document.getElementById('birdSlides');
@@ -178,7 +179,6 @@ function openBirdModal(bird) {
   const descEl = document.getElementById('modalBirdDesc');
   const tipEl = document.getElementById('modalBirdTip');
 
-  // Limpiar e insertar contenido
   nameEl.textContent = bird.name;
   descEl.textContent = bird.desc;
   tipEl.textContent = `Tip: ${bird.tip}`;
@@ -187,13 +187,12 @@ function openBirdModal(bird) {
   bird.images.forEach(img => {
     const slide = document.createElement('div');
     slide.classList.add('swiper-slide');
-    slide.innerHTML = `<img src="${img}" alt="${bird.name}" style="width:100%;height:260px;object-fit:cover;border-radius:8px;">`;
+    slide.innerHTML = `<img src="${img}" alt="${bird.name}">`;
     slidesContainer.appendChild(slide);
   });
 
   modal.hidden = false;
 
-  // Crear o reiniciar el carrusel
   if (swiper) swiper.destroy(true, true);
   swiper = new Swiper(".mySwiper", {
     loop: true,
@@ -201,13 +200,12 @@ function openBirdModal(bird) {
   });
 }
 
-// 🕊️ Función cerrar modal
 function closeBirdModal() {
   const modal = document.getElementById('birdModal');
   modal.hidden = true;
 }
 
-// 🔒 Asegurar que el modal esté oculto al cargar
+// keep modal hidden on load
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("birdModal");
   if (modal) modal.hidden = true;
