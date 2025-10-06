@@ -154,3 +154,47 @@ body{
   display: none !important;
   opacity: 0;
 }
+
+/* ---- Birding Plan Section ---- */
+.plan-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.plan-step {
+  flex: 1;
+  min-width: 300px;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: transform 0.25s ease;
+}
+
+.plan-step:hover {
+  transform: translateY(-4px);
+}
+
+.plan-step img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.plan-info {
+  padding: 14px 16px;
+}
+
+.plan-info h4 {
+  margin-top: 0;
+  color: var(--green);
+}
+
+.plan-info p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
