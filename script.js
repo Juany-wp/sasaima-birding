@@ -129,6 +129,146 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+/* ===========================================================
+   🐦 Birds of Sasaima — Interactive Map + Modal + Carousel
+   =========================================================== */
+
+// Datos de aves (coordenadas aproximadas dentro de Sasaima)
+const birdsData = [
+  {
+    key: "canario",
+    name: "Canario Coronado",
+    coords: [4.970, -74.430],
+    desc: "A flash of yellow that greets dawn among coffee bushes.",
+    tip: "Listen for cheerful notes near coffee fields early morning.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  },
+  {
+    key: "toche",
+    name: "Toche Pico de Plata",
+    coords: [4.965, -74.438],
+    desc: "Elegant and bright, it shines with silver tones when sunlight hits its feathers.",
+    tip: "Look for it among flowering guayacanes mid-morning.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  },
+  {
+    key: "tangara",
+    name: "Tángara Real",
+    coords: [4.975, -74.433],
+    desc: "Vivid colors dancing between branches — a true jewel of Sasaima.",
+    tip: "Best spotted after rain when mixed flocks are active.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  },
+  {
+    key: "tortolita",
+    name: "Tortolita Rojiza",
+    coords: [4.962, -74.425],
+    desc: "A gentle, rosy-toned dove often seen perched calmly on low branches.",
+    tip: "Scan open grassy edges and watch for slow, steady movements.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  },
+  {
+    key: "batara",
+    name: "Batará Carcajada",
+    coords: [4.958, -74.445],
+    desc: "A boisterous caller whose laugh-like notes punctuate the forest.",
+    tip: "Follow its clear calls early in the morning to locate it.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  },
+  {
+    key: "espatulita",
+    name: "Espatulita",
+    coords: [4.972, -74.440],
+    desc: "An elegant silhouette with a distinctive tail shape.",
+    tip: "Best spotted in shaded forest paths — keep your camera ready for subtle motion.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  },
+  {
+    key: "semillero",
+    name: "Semillero Capuchino",
+    coords: [4.968, -74.442],
+    desc: "A tiny, active seed-eater that darts between shrubs.",
+    tip: "Look low in thickets and along trail edges where seeds are abundant.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  },
+  {
+    key: "titiribi",
+    name: "Titiribí Pechirrojo",
+    coords: [4.974, -74.436],
+    desc: "A small bird with a warm, reddish chest that stands out against green leaves.",
+    tip: "Quiet patience near streams increases your chances at dawn or dusk.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  },
+  {
+    key: "bichofue",
+    name: "Bichofué",
+    coords: [4.963, -74.439],
+    desc: "A curious forest bird often seen hopping on trunks and branches.",
+    tip: "Check trunks and mid-height branches — they like vertical surfaces.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  },
+  {
+    key: "perico",
+    name: "Perico Alibronceado",
+    coords: [4.971, -74.428],
+    desc: "A playful parrotlet with a subtle bronze sheen when it moves.",
+    tip: "Watch small flocks around fruiting trees during late morning.",
+    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+  }
+];
+
+// Agregar pines de aves al mapa
+birdsData.forEach(bird => {
+  const marker = L.marker(bird.coords).addTo(map);
+  marker.on('click', () => openBirdModal(bird));
+});
+
+// Variables globales para el carrusel
+let swiper;
+
+// Función para abrir el modal
+function openBirdModal(bird) {
+  const modal = document.getElementById('birdModal');
+  const slidesContainer = document.getElementById('birdSlides');
+  const nameEl = document.getElementById('modalBirdName');
+  const descEl = document.getElementById('modalBirdDesc');
+  const tipEl = document.getElementById('modalBirdTip');
+
+  // Llenar la información
+  nameEl.textContent = bird.name;
+  descEl.textContent = bird.desc;
+  tipEl.textContent = `Tip: ${bird.tip}`;
+
+  // Limpiar slides anteriores
+  slidesContainer.innerHTML = "";
+
+  // Insertar nuevas imágenes
+  bird.images.forEach(img => {
+    const slide = document.createElement('div');
+    slide.classList.add('swiper-slide');
+    slide.innerHTML = `<img src="${img}" alt="${bird.name}">`;
+    slidesContainer.appendChild(slide);
+  });
+
+  modal.hidden = false;
+
+  // Inicializar o reiniciar el carrusel
+  if (swiper) swiper.destroy(true, true);
+  swiper = new Swiper(".mySwiper", {
+    loop: true,
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
+    },
+  });
+}
+
+// Cerrar modal
+function closeBirdModal() {
+  const modal = document.getElementById('birdModal');
+  modal.hidden = true;
+}
+
 // Example markers for demo — change or extend with real trailhead coordinates
 const markers = [
   {lat:4.9600, lng:-74.4400, title:'Panche Trailhead'},
