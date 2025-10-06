@@ -149,7 +149,7 @@ const birdsData = [
     coords: [4.965, -74.438],
     desc: "Elegant and bright, it shines with silver tones when sunlight hits its feathers.",
     tip: "Look for it among flowering guayacanes mid-morning.",
-    images: ["toche2.jpg", "toche3.jpg", "toche4.jpg"]
+    images: ["toche2.jpeg", "toche3.jpg", "toche4.jpeg"]
   },
   {
     key: "tangara",
