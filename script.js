@@ -157,7 +157,7 @@ const birdsData = [
     coords: [4.975, -74.433],
     desc: "Vivid colors dancing between branches — a true jewel of Sasaima.",
     tip: "Best spotted after rain when mixed flocks are active.",
-    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+    images: ["tangara2.jpeg", "tangara3.jpg", "tangara4.jpeg"]
   },
   {
     key: "tortolita",
@@ -165,7 +165,7 @@ const birdsData = [
     coords: [4.962, -74.425],
     desc: "A gentle, rosy-toned dove often seen perched calmly on low branches.",
     tip: "Scan open grassy edges and watch for slow, steady movements.",
-    images: ["birds/sample1.jpg", "birds/sample2.jpg", "birds/sample3.jpg"]
+    images: ["tortolita2.jpeg", "tortolita3.jpeg", "tortolita4.jpg"]
   },
   {
     key: "batara",
@@ -269,13 +269,8 @@ function closeBirdModal() {
   modal.hidden = true;
 }
 
-// Example markers for demo — change or extend with real trailhead coordinates
-const markers = [
-  {lat:4.9600, lng:-74.4400, title:'Panche Trailhead'},
-  {lat:4.9750, lng:-74.4300, title:'Jardín del Agua (Santa Teresa)'},
-  {lat:4.9550, lng:-74.4450, title:'La Poma Natural Park'}
-];
-
-markers.forEach(m=>{
-  L.marker([m.lat,m.lng]).addTo(map).bindPopup(m.title);
+// Asegurar que el modal esté oculto al cargar la página
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("birdModal");
+  if (modal) modal.hidden = true;
 });
