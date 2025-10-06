@@ -102,7 +102,7 @@ birdGrid.addEventListener('click', e=>{
   birdPanel.innerHTML = `
     <div style="display:flex;gap:12px;align-items:flex-start">
       <div style="flex:0 0 120px">
-        <img src="birds/${key}.jpg" alt="${info.name}" style="width:120px;height:90px;object-fit:cover;border-radius:6px">
+        <alt="${info.name}" style="width:120px;height:90px;object-fit:cover;border-radius:6px">
       </div>
       <div>
         <h4>${info.name}</h4>
